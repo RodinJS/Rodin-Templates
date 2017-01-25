@@ -32,6 +32,7 @@ export class Screen extends THREEObject {
         const height = width / p;
 
         super(new THREE.Mesh(new THREE.PlaneGeometry(width, height, 1, 1), new THREE.MeshBasicMaterial({side: THREE.DoubleSide})));
+        this.locked = false;
 
         this.animator.add(hoverAnimation, hoverOutAnimation);
 
@@ -46,6 +47,7 @@ export class Screen extends THREEObject {
         this.on('ready', () => {
             this.currentIndex = 0;
             this.show(0);
+            this.lock();
 
             this.backButton = new Element({
                 width: .15,
@@ -98,6 +100,8 @@ export class Screen extends THREEObject {
     }
 
     show(slideIndex) {
+        console.log(this.locked);
+        if(this.locked) return;
         this.object3D.material.map = this.slides[slideIndex];
         this.currentIndex = slideIndex;
     }
@@ -112,6 +116,14 @@ export class Screen extends THREEObject {
         if (this.currentIndex > 0) {
             this.show(this.currentIndex - 1);
         }
+    }
+
+    lock() {
+        this.locked = true;
+    }
+
+    unlock() {
+        this.locked = false;
     }
 }
 
