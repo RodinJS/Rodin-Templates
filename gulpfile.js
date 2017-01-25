@@ -40,7 +40,7 @@ const connect = require('gulp-connect');
 
 const JS = ['src/**/*.js', '!src/**/models/**/*.js'];
 const SASS = ['src/**/*.scss'];
-const IMG = ['src/**/*.{jpg,jpeg,ico,png}'];
+const OTHER = ['src/**/*.{jpg,jpeg,ico,png,mtl,obj,json}'];
 const VIDEO = ['src/**/*'];
 const HTML = ['src/**/*.html'];
 
@@ -145,8 +145,8 @@ gulp.task('sass-prod', () => {
         }));
 });
 
-gulp.task('img', () => {
-    gulp.src(IMG)
+gulp.task('OTHER', () => {
+    gulp.src(OTHER)
         .pipe(plumber(ERROR_MESSAGE))
         .pipe(gulp.dest('./build'));
 });
@@ -159,8 +159,9 @@ gulp.task('html', () => {
 
 gulp.task('watch', () => {
     gulp.watch(SASS, ['sass']);
+    gulp.watch(HTML, ['html']);
     gulp.watch(JS, ['js']);
-    gulp.watch(IMG, ['img']);
+    gulp.watch(OTHER, ['OTHER']);
 });
 
 gulp.task('clean', () => {
@@ -177,9 +178,9 @@ gulp.task('connect', () => {
 
 
 gulp.task('prod', (done) => {
-    sequence('clean', ['html', 'js-prod', 'sass-prod', 'img'], done);
+    sequence('clean', ['html', 'js-prod', 'sass-prod', 'OTHER'], done);
 });
 
 gulp.task('default', (done) => {
-    sequence('clean', ['html', 'js', 'sass', 'img', 'connect', 'watch'], done);
+    sequence('clean', ['html', 'js', 'sass', 'OTHER', 'connect', 'watch'], done);
 });
