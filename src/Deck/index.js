@@ -13,4 +13,3 @@ const scene = SceneManager.get();
 const amLight = new THREE.AmbientLight();
 amLight.intensity = 1.2;
 scene.add(amLight);
-git
