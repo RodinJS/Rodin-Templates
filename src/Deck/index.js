@@ -9,6 +9,7 @@ import {room} from './objects/room.js';
 import {screen} from './objects/screen.js';
 import './controllers.js';
 import {space} from './objects/space.js';
+import {floor} from './objects/floor.js';
 // import './objects/sky.js';
 
 let mode = 'light';
@@ -16,6 +17,7 @@ function enterDarkMode() {
     room.object3D.parent.remove(room.object3D);
     screen.unlock();
     space.show();
+    floor.animate();
     mode = 'dark';
 }
 
