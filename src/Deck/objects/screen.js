@@ -50,16 +50,16 @@ export class Screen extends THREEObject {
             this.lock();
 
             this.backButton = new Element({
-                width: .15,
-                height: .15,
+                width: .2,
+                height: .2,
                 background: {
                     color: 0xaaaaaa,
                     opacity: 0
                 },
                 image: {
                     url: "./images/backbutton.png",
-                    width: .15,
-                    height: .15,
+                    width: .2,
+                    height: .2,
                     opacity: 1,
                     position: {
                         h: 50,
